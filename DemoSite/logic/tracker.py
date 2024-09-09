@@ -1,7 +1,7 @@
 import cv2
 from deep_sort_realtime.deepsort_tracker import DeepSort
 
-from DEMO.params import *
+from DemoSite.params import *
 
 tracker = DeepSort(max_age=max_age, n_init=n_init, max_iou_distance=max_iou_distance)
 

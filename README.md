@@ -9,3 +9,16 @@ AI-wave-tracker is an advanced AI-powered system utilizing YOLOv10 and Deep Sort
 - Support for video or live webcam streams
 - Optimized for precision and resource efficiency
 - Calculation of Surf Quality Metrics
+
+## Structure
+
+### DTMS
+DTMS (Detect Track Mark and Send) is a module aimed to get in input a video and return the same video with Bonding Boxes
+plus a JSON with Surf Quality Metrics, like the number of waves, the average and maximum lenght in seconds.
+
+### CamAnalyzer
+The CamAnalyzer is a module that use the DTMS package to analyze realtime video coming from Meo BeachCam webcams.
+It provides API to access the RealTime Marked VideoStream and the Metrics
+
+### DemoSite
+The DemoSite is a simple application that allow to test visually the DTMS and the CamAnalyzer functioning.

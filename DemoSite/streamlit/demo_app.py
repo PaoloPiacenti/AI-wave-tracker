@@ -5,11 +5,11 @@ import pandas as pd
 import streamlit as st
 import tempfile
 
-from DEMO.params import *
+from DemoSite.params import *
 
-from DEMO.logic.visualizations import draw_predictions
-import DEMO.logic.detector as dt
-import DEMO.logic.tracker as tr
+from DemoSite.logic.visualizations import draw_predictions
+import DemoSite.logic.detector as dt
+import DemoSite.logic.tracker as tr
 
 
 ################################################################################

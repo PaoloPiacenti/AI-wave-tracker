@@ -1,5 +1,5 @@
 from ultralytics import YOLOv10
-from DEMO.params import *
+from DemoSite.params import *
 
 
 def initialize_model():
