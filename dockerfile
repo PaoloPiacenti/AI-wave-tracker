@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     libglib2.0-0
 
 # Copy your application files
-COPY surf_buddy surf_buddy
+COPY app app
 COPY requirements.txt /requirements.txt
 
 # Upgrade pip and install Python dependencies
@@ -14,7 +14,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Set Python path to include surf_buddy module
-ENV PYTHONPATH="/surf_buddy:${PYTHONPATH}"
+ENV PYTHONPATH="/app:${PYTHONPATH}"
 
 # Set the command to run your application
 CMD streamlit run surf_buddy/app/demo_app.py --server.port $PORT --server.headless true

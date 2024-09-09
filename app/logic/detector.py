@@ -1,11 +1,9 @@
-from roboflow import Roboflow
 from ultralytics import YOLOv10
 from app.params import *
-import json
 
 
 def inizialize_model(model_type = model_type):
-    model = YOLOv10('surf_buddy/logic/model/weights_best_&_last_pt/best.pt')
+    model = YOLOv10('model/weights_best_&_last_pt/best.pt')
     return model
 
 
