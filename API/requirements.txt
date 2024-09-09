@@ -1,0 +1,6 @@
+fastapi
+google-cloud-bigquery
+pydantic
+uvicorn
+pandas
+google-cloud-bigquery[pandas]
