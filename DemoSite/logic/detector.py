@@ -3,7 +3,7 @@ from DemoSite.params import *
 
 
 def initialize_model():
-    model = YOLOv10('surf_buddy/logic/model/weights_best_&_last_pt/best.pt')
+    model = YOLOv10(MODEL_PATH)
     return model
 
 

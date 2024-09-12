@@ -59,7 +59,7 @@ beaches = st.session_state['beaches']
 
 # Initialize model
 if mode != "Streaming" and model_type != "Cache":
-    model = dt.inizialize_model()
+    model = dt.initialize_model()
 
 # Initialize tracker
 if mode == 'Tracking':

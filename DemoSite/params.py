@@ -16,7 +16,7 @@ beaches = {
     "Guincho":"praiaguinchosul"
 }
 
-
+MODEL_PATH = os.environ.get("MODEL_PATH")
 # Default mode:
 # >> Streaming: just display the streaming from MeoBeach Cam
 # >> Detection: display the streaming with Bounding Boxes

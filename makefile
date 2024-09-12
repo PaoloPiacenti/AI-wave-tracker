@@ -10,10 +10,10 @@ clean:
 	@rm -Rf */*.pyc
 
 tests:
-	@pytest \
-	tests/test_app.py \
-	tests/test_detector.py \
-	tests/test_visualization.py
+	@pytest -v tests
+
+run_WaveTracker:
+	@python WaveTracker/main.py $(ARGS)
 
 demo_website:
-	@streamlit run app/streamlit/demo_app.py
+	@streamlit run DemoSite/streamlit/demo_app.py
