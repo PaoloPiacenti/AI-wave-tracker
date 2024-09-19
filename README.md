@@ -51,49 +51,34 @@ You can install the dependencies using the following command:
 ```bash
 pip install -r requirements.txt
 ```
-
-## Requirements
-Python 3.7 or higher
-Operating System: Compatible with Windows, macOS, and Linux.
-
-### Python Dependencies
-Install the following Python packages:
-
-- opencv-python (cv2)
-- ultralytics
-- deep_sort_realtime
-- numpy
-
-You can install the dependencies using the following command:
-
-'''
-pip install -r requirements.txt
-'''
 **Note:** Ensure that you have the YOLOv10 model file available at the specified MODEL_PATH.
 
 ## Installation
 Clone the Repository:
 
-'''
+```bash
 git clone https://github.com/PaoloPiacenti/AI-wave-tracker/.git
 cd AI-wave-tracker
-'''
-
+```
 
 ## Usage
 
 ### Preparing the Input Video
-- Place your input video file (e.g., '''surf_video.mp4''') in the '''Resources/input''' directory.
-- Supported video formats include '''.mp4''', '''.avi''', and other formats compatible with OpenCV.
+- Place your input video file (e.g., `surf_video.mp4`) in the `Resources/input` directory.
+- Supported video formats include `.mp4`, `.avi`, and other formats compatible with OpenCV.
 
 ### Running WaveTracker
-Use the provided '''Makefile''' or run the script directly.
+Use the provided `Makefile` or run the script directly.
 
 **Using the Makefile**
-'''make run_WaveTracker ARGS=surf_video.mp4'''
+```bash
+make run_WaveTracker ARGS=surf_video.mp4
+```
 
 **Running the Script Directly**
-'''python main.py surf_video.mp4'''
+```bash
+python main.py surf_video.mp4
+```
 
 ### Understanding the Output
 - **Annotated Video:** An output video with bounding boxes drawn around detected wave pockets will be saved in the Resources/output directory as output_surf_video.mp4.
@@ -101,7 +86,7 @@ Use the provided '''Makefile''' or run the script directly.
 
 **Sample JSON Output**
 
-'''
+```JSON
 [
     {
         "wave_id": 1,
@@ -120,23 +105,23 @@ Use the provided '''Makefile''' or run the script directly.
         "avg_bbox_width": 115.7
     }
 ]
-'''
+```
 
 ## Configuration
 You can fine-tune the detection and tracking parameters by modifying the params.py file.
 
 ### YOLOv10 Detector Parameters
-- '''fps''': Number of predictions per second. Adjusts the frequency of frame predictions relative to the video FPS.
-- '''confidence_threshold''': Detections with a confidence lower than this threshold are discarded.
+- `fps`: Number of predictions per second. Adjusts the frequency of frame predictions relative to the video FPS.
+- `confidence_threshold`: Detections with a confidence lower than this threshold are discarded.
 
 ### Deep SORT Tracker Parameters
-- '''max_age''': Maximum number of frames to keep a track alive without detections before removing it.
-- '''n_init''': Number of consecutive detections required to confirm a track.
-- '''max_iou_distance''': Maximum IoU distance for matching detections to tracks.
+- `max_age`: Maximum number of frames to keep a track alive without detections before removing it.
+- `n_init`: Number of consecutive detections required to confirm a track.
+- `max_iou_distance`: Maximum IoU distance for matching detections to tracks.
 
 
 ## Project Structure
-'''
+```bash
 WaveTracker/
 ├── Resources/
 │   ├── input/         # Directory for input videos
@@ -150,20 +135,20 @@ WaveTracker/
 ├── Makefile           # Makefile for easy execution
 ├── requirements.txt   # Python dependencies
 └── README.md          # This README file
-'''
+```
 
 ## Example
 
 ### 1. Run WaveTracker:
 
-'''
+```bash
 python main.py carcavelos.mp4
-'''
+```
 
 ### 2. Check the Output:
 
-Annotated video: '''Resources/output/output_carcavelos.mp4'''
-JSON data: '''Resources/output/wave_data_carcavelos.json'''
+Annotated video: `Resources/output/output_carcavelos.mp4`
+JSON data: `Resources/output/wave_data_carcavelos.json`
 
 ### 3. Analyze the Results:
 Use the JSON file to analyze wave durations, sizes, and frequencies to determine surf conditions.
