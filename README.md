@@ -160,7 +160,7 @@ JSON data: `Resources/output/wave_data_carcavelos.json`
 Use the JSON file to analyze wave durations, sizes, and frequencies to determine surf conditions.
 
 ## License
-MIT License
+[![License: GPL License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Acknowledgments
 - Ultralytics YOLOv10: For the state-of-the-art object detection model.
