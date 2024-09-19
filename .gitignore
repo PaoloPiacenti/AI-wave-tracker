@@ -4,5 +4,7 @@ _old
 dockerfile
 Resources/output
 __pycache__
+.env
+.envrc
 
 CamAnalyzer
