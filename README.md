@@ -15,6 +15,12 @@ This tool can be integrated with smart cameras to monitor surf conditions in rea
     - **Annotated Video:** Saves a video with bounding boxes drawn around detected wave pockets.
     - **JSON Data:** Outputs a JSON file containing detailed information about each tracked wave.
 
+## Contributors
+This project was developed for didactical purposes during the 2-week final project for the **Le Wagon - Data Science and AI** bootcamp in Lisbon in August 2023 by:
+- Paolo Piacenti @github/PaoloPiacenti
+- Francisco Rocheta @github/ChicoCheta
+- Andrew Wade @github/Andrew-Wadey
+
 ## Table of Contents
 
 - [Requirements](#requirements)
