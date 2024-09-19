@@ -5,6 +5,8 @@ import detector as dt
 import tracker as tr
 import inout as io
 
+import json
+
 from params import *
 
 
@@ -36,7 +38,7 @@ def WaveTracker():
 
     # Calculate the interval between frames to predict
     original_fps = cap.get(cv2.CAP_PROP_FPS)
-    frame_interval = int(original_fps / fps)
+    frame_interval = max(int(original_fps / fps), 1)  # Ensure at least 1
 
     # Get frame size for output video
     frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -59,13 +61,22 @@ def WaveTracker():
         if frame_count % frame_interval == 0:
             bbs,frame = dt.detect_wave_pockets_bbs(frame,model,show_bb=True)
 
+        else:
+            bbs = []
 
+        # Update tracks
+        frame, tracks = tr.update_tracker_bbs_sqm(tracker, frame, bbs, frame_count, original_fps, show_bb=True)
+
+        '''
         # Update tracks only on not empty predictions
         if len(bbs) > 0:
             frame, tracks = tr.update_tracker_bbs(tracker, frame, bbs,show_bb=True)
+        '''
 
         # Save the processed frame to the video
-        print("Analyzing the video...")
+        if frame_count % 10 == 0:
+            print(f"Processing frame {frame_count}...")
+
         io.save_frame_with_bbs(frame)
 
         # Show the frame with bounding boxes in a window
@@ -80,6 +91,28 @@ def WaveTracker():
     # Release video capture and writer resources
     cap.release()
     io.finalize_video_writer(output_folder)
+
+    # After processing, compute average bounding box sizes and save to JSON
+    wave_data_list = []
+    for wave_id, data in tr.tracking_data.items():
+        avg_bbox_hight = sum(data['bbox_hight']) / data['num_detections']
+        avg_bbox_width = sum(data['bbox_width']) / data['num_detections']
+        wave_info = {
+            'wave_id': wave_id,
+            'start_time': data['start_time'],
+            'end_time': data['end_time'],
+            'num_detections': data['num_detections'],
+            'avg_bbox_hight': avg_bbox_hight,
+            'avg_bbox_width': avg_bbox_width
+        }
+        wave_data_list.append(wave_info)
+
+    # Save wave data to JSON file in the output folder
+    output_json_path = os.path.join(output_folder, f'wave_data_{video_name}.json')
+    with open(output_json_path, 'w') as json_file:
+        json.dump(wave_data_list, json_file, indent=4)
+
+    print(f"Wave tracking data saved to {output_json_path}")
 
     # If you're using OpenCV to visualize the video while processing, make sure to close windows
     cv2.destroyAllWindows()

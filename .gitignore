@@ -3,8 +3,9 @@ _old
 .python-version
 dockerfile
 Resources/output
-__pycache__
+*__pycache__
 .env
 .envrc
+Resources/input/test.mp4
 
 CamAnalyzer
