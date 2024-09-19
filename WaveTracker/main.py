@@ -44,7 +44,7 @@ def WaveTracker():
     frame_size = (frame_width, frame_height)
 
     # Initialize the output folder and video writer
-    output_folder = "WaveTracker/output"
+    output_folder = "Resources/output"
     io.initialize_video_writer(output_folder,video_name,frame_size, original_fps)
 
     frame_count = 0

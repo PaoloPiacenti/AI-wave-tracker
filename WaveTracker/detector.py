@@ -1,6 +1,5 @@
 from ultralytics import YOLOv10
 from params import *
-import json
 import cv2
 
 def inizialize_model(model):

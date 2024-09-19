@@ -27,38 +27,6 @@ def initialize_tracker(max_age=35,n_init=3,nn_budget=None,max_iou_distance=0.7,e
 
 
 def update_tracker_bbs(tracker, frame, bbs, show_bb=True):
-
-    """
-    """
-
-    tracks = tracker.update_tracks(bbs, frame=frame)
-
-    if show_bb:
-        for track in tracks:
-            if not track.is_confirmed():
-                continue
-
-            track_id = track.track_id
-            #track_time = track.time_since_update
-
-            ltrb = track.to_ltrb()
-
-            # Extract bounding box coordinates
-            left, top, right, bottom = map(int, ltrb)
-
-            # Draw tracking box on the frame
-            cv2.rectangle(frame, (left, top), (right, bottom), (255, 0, 0), 2)
-
-            # Optionally, display the track ID on the frame
-            track_id = track.track_id
-            label = f"Wave: {track_id}"
-            cv2.putText(frame, label, (left, bottom + 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
-
-    # Return the updated frame and the tracks
-    return frame, tracks
-
-
-def update_tracker_bbs_x(tracker, frame, bbs, display_bbs=True):
     """
     Updates the tracker with bounding boxes and displays tracked objects on the frame.
 
@@ -81,20 +49,30 @@ def update_tracker_bbs_x(tracker, frame, bbs, display_bbs=True):
         tracks: List of track objects from Deep SORT.
     """
 
-    if len(bbs) > 0:
-        # Pass the list of formatted detections to Deep SORT
-        tracks = tracker.update_tracks(bbs, frame)
+    # Pass the list of formatted detections to Deep SORT
+    tracks = tracker.update_tracks(bbs, frame=frame)
 
-        # Visualize the tracking results
+    # Visualize the tracking results
+    if show_bb:
         for track in tracks:
             if not track.is_confirmed():
                 continue
+
             track_id = track.track_id
-            bbox = track.to_tlbr()  # Convert to top-left bottom-right format (x1, y1, x2, y2)
-            x1, y1, x2, y2 = map(int, bbox)
+            #track_time = track.time_since_update
 
-            # Draw bounding boxes and track ID on the frame
-            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            cv2.putText(frame, f"Wave: {track_id}", (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+            ltrb = track.to_ltrb()
 
+            # Extract bounding box coordinates
+            left, top, right, bottom = map(int, ltrb)
+
+            # Draw tracking box on the frame
+            cv2.rectangle(frame, (left, top), (right, bottom), (255, 0, 0), 2)
+
+            # Optionally, display the track ID on the frame
+            track_id = track.track_id
+            label = f"Wave: {track_id}"
+            cv2.putText(frame, label, (left, bottom + 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
+
+    # Return the updated frame and the tracks
     return frame, tracks

@@ -32,4 +32,3 @@ max_iou_distance = 0.4 # Detections will be matched to tracks if their bounding 
 import os
 
 MODEL_PATH = os.environ.get("MODEL_PATH")
-SORT_PATH = os.environ.get("SORT_PATH")

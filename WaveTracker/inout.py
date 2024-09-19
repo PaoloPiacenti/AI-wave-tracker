@@ -1,6 +1,5 @@
 
 import os
-import sys
 import shutil
 import cv2
 
@@ -12,7 +11,7 @@ def upload_video(video_name):
     Upload a video from the video folder
     """
 
-    video_folder = os.path.join("WaveTracker","videos")
+    video_folder = os.path.join("Resources","input")
 
     video_path = os.path.join(video_folder, video_name)
 
