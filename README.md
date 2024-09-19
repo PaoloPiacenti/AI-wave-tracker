@@ -1,32 +1,56 @@
 # WaveTracker
 
 ## Introduction
+
 **WaveTracker** is a Python-based tool designed to detect and track waves in surf webcam video frames. By utilizing advanced computer vision techniques, including the **YOLOv10** object detection model and the **Deep SORT** tracking algorithm, WaveTracker identifies "wave pockets" in video frames and tracks these detections over time. The result is a comprehensive JSON file containing data about the tracked waves and a video annotated with bounding boxes highlighting the detected wave pockets.
 
 This tool can be integrated with smart cameras to monitor surf conditions in real-time, making it valuable for surfers, lifeguards, coastal management authorities, and surf-related businesses.
 
 ## Features
+
 - **Wave Detection:** Uses YOLOv10 to detect wave pockets in video frames.
 - **Wave Tracking:** Employs Deep SORT to track detected waves across frames.
 - **Surf Quality Metrics:** Calculates metrics like average bounding box size and wave duration.
 - **Output Generation:**
-    - ***Annotated Video:*** Saves a video with bounding boxes drawn around detected wave pockets.
-    - ***JSON Data:*** Outputs a JSON file containing detailed information about each tracked wave.
+    - **Annotated Video:** Saves a video with bounding boxes drawn around detected wave pockets.
+    - **JSON Data:** Outputs a JSON file containing detailed information about each tracked wave.
 
 ## Table of Contents
-Requirements
-Installation
-Usage
-  Preparing the Input Video
-  Running WaveTracker
-  Understanding the Output
-Configuration
-  Environment Variables
-  Parameter Tuning
-Project Structure
-Example
-License
-Acknowledgments
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Preparing the Input Video](#preparing-the-input-video)
+  - [Running WaveTracker](#running-wavetracker)
+  - [Understanding the Output](#understanding-the-output)
+- [Configuration](#configuration)
+  - [YOLOv10 Detector Parameters](#yolov10-detector-parameters)
+  - [Deep SORT Tracker Parameters](#deep-sort-tracker-parameters)
+- [Project Structure](#project-structure)
+- [Example](#example)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+- [Contact](#contact)
+
+## Requirements
+
+- **Python 3.7 or higher**
+- **Operating System**: Compatible with Windows, macOS, and Linux.
+
+### Python Dependencies
+
+Install the following Python packages:
+
+- `opencv-python` (cv2)
+- `ultralytics`
+- `deep_sort_realtime`
+- `numpy`
+
+You can install the dependencies using the following command:
+
+```bash
+pip install -r requirements.txt
+```
 
 ## Requirements
 Python 3.7 or higher
