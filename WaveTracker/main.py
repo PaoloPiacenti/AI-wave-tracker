@@ -24,7 +24,7 @@ def WaveTracker():
     """
 
     # Inizialize models
-    model = dt.inizialize_model(MODEL_PATH)
+    model = dt.inizialize_model('trained_yolo.pt')
     tracker = tr.initialize_tracker(max_age=max_age,n_init=n_init,max_iou_distance=max_iou_distance)
 
     # Upload video

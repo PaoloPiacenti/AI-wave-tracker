@@ -71,6 +71,7 @@ cd AI-wave-tracker
 
 ### Preparing the Input Video
 - Place your input video file (e.g., `surf_video.mp4`) in the `Resources/input` directory.
+- We provide two example videos taken from Meo Beachcam for test purpose: `carcavelos.mp4` and `ericeira.mp4`.
 - Supported video formats include `.mp4`, `.avi`, and other formats compatible with OpenCV.
 
 ### Running WaveTracker
@@ -78,12 +79,12 @@ Use the provided `Makefile` or run the script directly.
 
 **Using the Makefile**
 ```bash
-make run_WaveTracker ARGS=surf_video.mp4
+make run_WaveTracker ARGS=carcavelos.mp4
 ```
 
 **Running the Script Directly**
 ```bash
-python main.py surf_video.mp4
+python main.py carcavelos.mp4
 ```
 
 ### Understanding the Output

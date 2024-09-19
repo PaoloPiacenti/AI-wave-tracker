@@ -23,12 +23,3 @@ from the 'Waves Pockets' detections in each frame.
 max_age = 5 # Tracks will be kept alive for up to max_age frames without a detection before being removed. Suggested:30
 n_init = 5 # A track will only be confirmed after n_init consecutive detections. Suggested: 3
 max_iou_distance = 0.4 # Detections will be matched to tracks if their bounding boxes have an IoU of at least. Suggested: 0.7
-
-
-################################################################################
-#                         ENVIRONMENTAL VARIABLES                              #
-################################################################################
-
-import os
-
-MODEL_PATH = os.environ.get("MODEL_PATH")
