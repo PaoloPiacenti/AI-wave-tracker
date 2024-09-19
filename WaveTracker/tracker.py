@@ -5,6 +5,7 @@ Tracking the waves and calculate surf quality metrics.
 import numpy as np
 import cv2
 from deep_sort_realtime.deepsort_tracker import DeepSort
+from waves import Wave
 from params import *
 
 # Add a global dictionary to store tracking data
@@ -111,23 +112,14 @@ def update_tracker_bbs_sqm(tracker, frame, bbs, current_frame_number, fps, show_
         bbox_width = right - left
         current_time = current_frame_number / fps  # Calculate current time in seconds
 
-        # Update tracking data
+        # Update tracking data using Wave instances
         if track_id not in tracking_data:
-            # Initialize data for new track
-            tracking_data[track_id] = {
-                'wave_id': track_id,
-                'start_time': current_time,
-                'end_time': current_time,
-                'num_detections': 1,
-                'bbox_hight': [bbox_hight],
-                'bbox_width': [bbox_width]
-            }
+            # Initialize a new Wave instance for a new track
+            tracking_data[track_id] = Wave(track_id, current_time, bbox_hight, bbox_width)
         else:
-            # Update existing track data
-            tracking_data[track_id]['end_time'] = current_time
-            tracking_data[track_id]['num_detections'] += 1
-            tracking_data[track_id]['bbox_hight'].append(bbox_hight)
-            tracking_data[track_id]['bbox_width'].append(bbox_width)
+            # Update existing Wave instance
+            wave = tracking_data[track_id]
+            wave.update(current_time, bbox_hight, bbox_width)
 
         if show_bb:
             # Draw tracking box on the frame

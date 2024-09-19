@@ -2,6 +2,9 @@
 import os
 import shutil
 import cv2
+import json
+
+from tracker import tracking_data
 
 video_writer = None
 
@@ -78,3 +81,26 @@ def finalize_video_writer(output_folder):
         video_writer.release()
         video_writer = None
         print(f"VideoWriter finalized and video saved on {output_folder}")
+
+def create_waves_data_json(output_folder,video_name):
+    # After processing, compute average bounding box sizes and save to JSON
+    wave_data_list = []
+    for wave_id, wave in tracking_data.items():
+        avg_bbox_hight = wave.bbox_hight_sum / wave.num_detections
+        avg_bbox_width = wave.bbox_width_sum / wave.num_detections
+        wave_info = {
+            'wave_id': wave.wave_id,
+            'start_time': wave.start_time,
+            'end_time': wave.end_time,
+            'num_detections': wave.num_detections,
+            'avg_bbox_hight': avg_bbox_hight,
+            'avg_bbox_width': avg_bbox_width
+        }
+        wave_data_list.append(wave_info)
+
+    # Save wave data to JSON file in the output folder
+    output_json_path = os.path.join(output_folder, f'wave_data_{video_name}.json')
+    with open(output_json_path, 'w') as json_file:
+        json.dump(wave_data_list, json_file, indent=4)
+
+    print(f"Wave tracking data saved to {output_json_path}")
